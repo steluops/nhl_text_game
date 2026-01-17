@@ -494,6 +494,7 @@ int main()
 
         if(timeLimit == 20 || goal == true || periodOver == true)
         {
+            // determining faceoff outcome
             srand(time(NULL));
             faceoff = faceoffWinOrLose[rand() % 2];
 
@@ -511,9 +512,10 @@ int main()
             }
         }
         
-
+        // if your team won the faceoff
         if(puckPossession == yourTeam)
         {
+            // asking user if they want to pass or shoot the puck
             cout << "(P)ass or (S)hoot the puck?" << endl;
             cin >> passOrShoot;
 
@@ -522,6 +524,7 @@ int main()
             case 'p':
             case 'P':
             {
+                // passing outcome
                 srand(time(NULL));
                 passing = passingChance[rand() % 2];
 
@@ -542,11 +545,13 @@ int main()
             case 's':
             case 'S':
             {
+                // shooting outcome
                 srand(time(NULL));
                 shooting = shootingChance[rand() % 2];
 
                 if(shooting == "success")
                 {
+                    // adding a goal to the scoreboard
                     cout << yourTeam << " GOAL!" << endl;
                     yourScore = yourScore + 1;
 
@@ -565,6 +570,7 @@ int main()
                 {
                     cout << "Your team failed to score." << endl;
 
+                    // recovering the puck chance
                     srand(time(NULL));
                     recovering = recoveryChance[rand() % 2];
 
@@ -591,6 +597,7 @@ int main()
             }
 
         }
+        // the opponent/cpu has the puck
         else if(puckPossession == opponentTeam)
         {
             srand(time(NULL));
@@ -598,7 +605,7 @@ int main()
 
             if(cpu == "pass")
             {
-                
+                // the chances of cpu completing a pass
                 srand(time(NULL));
                 passing = cpuPassingChance[rand() % 2];
 
@@ -617,6 +624,7 @@ int main()
             }
             else if(cpu == "shoot")
             {
+                // the chances the cpu scores a goal
                 srand(time(NULL));
                 shooting = cpuShootingChance[rand() % 2];
 
@@ -660,6 +668,7 @@ int main()
             
         }
 
+        // time manipulators
         if(timeLimit > 0 && periodNumber <= 3)
         {
             gameOver = false;
